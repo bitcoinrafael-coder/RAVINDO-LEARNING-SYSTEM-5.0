@@ -1,0 +1,2211 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RAVINDO LEARNING SYSTEM - Marine Electrical & Hydraulic Training</title>
+  <style>
+    :root {
+      --primary-dark: #0a2e47;
+      --primary-blue: #0b3c5d;
+      --secondary-blue: #328cc1;
+      --accent-gold: #d9b310;
+      --light-bg: #f4f6f8;
+      --text-dark: #222;
+      --text-light: #f8f9fa;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+      --hydraulic-green: #1a4d2e;
+      --hydraulic-light: #4a7c59;
+      --pneumatic-purple: #5c3d7a;
+      --pneumatic-light: #8c6da9;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--text-dark);
+      background-color: var(--light-bg);
+      background-image: linear-gradient(rgba(11, 60, 93, 0.03) 1px, transparent 1px), 
+                        linear-gradient(90deg, rgba(11, 60, 93, 0.03) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+    
+    header {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary-blue));
+      color: var(--text-light);
+      text-align: center;
+      padding: 2rem 1rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      position: relative;
+      overflow: hidden;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%230a2e47"/><path d="M0,50 L100,50 L100,100 L0,100 Z" fill="%230b3c5d" opacity="0.3"/></svg>');
+      background-size: cover;
+    }
+    
+    header::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(50, 140, 193, 0.2) 0%, transparent 70%);
+      z-index: 0;
+    }
+    
+    header h1 {
+      font-size: 3.2rem;
+      margin-bottom: 0.5rem;
+      position: relative;
+      z-index: 1;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    
+    header p {
+      font-size: 1.4rem;
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      opacity: 0.95;
+      font-weight: 300;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    
+    section {
+      padding: 2.5rem 0;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      position: relative;
+      color: var(--primary-blue);
+      font-size: 2.2rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
+    }
+    
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 100px;
+      height: 4px;
+      background: var(--accent-gold);
+      margin: 0.75rem auto;
+      border-radius: 2px;
+    }
+    
+    .section-subtitle {
+      text-align: center;
+      font-size: 1.3rem;
+      color: var(--primary-dark);
+      margin-bottom: 2rem;
+      font-weight: 500;
+    }
+    
+    .card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      margin-bottom: 2rem;
+      transition: var(--transition);
+      border: 1px solid rgba(11, 60, 93, 0.1);
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18);
+      border-color: rgba(11, 60, 93, 0.2);
+    }
+    
+    .card-header {
+      background: linear-gradient(to right, var(--primary-blue), var(--secondary-blue));
+      color: white;
+      padding: 1.4rem 1.8rem;
+      font-size: 1.6rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .card-header.hydraulic {
+      background: linear-gradient(to right, var(--hydraulic-green), var(--hydraulic-light));
+    }
+    
+    .card-header.pneumatic {
+      background: linear-gradient(to right, var(--pneumatic-purple), var(--pneumatic-light));
+    }
+    
+    .card-body {
+      padding: 2rem;
+    }
+    
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem;
+      margin: 1.5rem 0;
+    }
+    
+    .image-container {
+      margin: 1.5rem 0;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+      position: relative;
+      height: 280px;
+      background: var(--light-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+      border: 2px solid #e9ecef;
+    }
+    
+    .image-container:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      border-color: var(--secondary-blue);
+    }
+    
+    .image-container.hydraulic:hover {
+      border-color: var(--hydraulic-light);
+    }
+    
+    .image-container.pneumatic:hover {
+      border-color: var(--pneumatic-light);
+    }
+    
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 12px;
+      background: white;
+      transition: var(--transition);
+    }
+    
+    .image-container:hover img {
+      transform: scale(1.05);
+    }
+    
+    .image-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(11, 60, 93, 0.88);
+      color: white;
+      padding: 10px 15px;
+      font-size: 0.95rem;
+      text-align: center;
+      font-weight: 500;
+    }
+    
+    .image-container.hydraulic .image-caption {
+      background: rgba(26, 77, 46, 0.92);
+    }
+    
+    .image-container.pneumatic .image-caption {
+      background: rgba(92, 61, 122, 0.92);
+    }
+    
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+      height: 0;
+      overflow: hidden;
+      max-width: 100%;
+      background: #000;
+      border-radius: 10px;
+      margin: 2rem 0;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+      border: 3px solid var(--secondary-blue);
+    }
+    
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    
+    .popup-btn {
+      background: linear-gradient(to right, var(--primary-blue), var(--secondary-blue));
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      font-size: 1.15rem;
+      border-radius: 50px;
+      cursor: pointer;
+      margin: 12px 8px;
+      transition: var(--transition);
+      font-weight: 600;
+      box-shadow: 0 5px 12px rgba(11, 60, 93, 0.35);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 220px;
+      justify-content: center;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .popup-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 16px rgba(11, 60, 93, 0.45);
+      background: linear-gradient(to right, #092a42, #256a92);
+    }
+    
+    .popup-btn.hydraulic {
+      background: linear-gradient(to right, var(--hydraulic-green), var(--hydraulic-light));
+      box-shadow: 0 5px 12px rgba(26, 77, 46, 0.35);
+    }
+    
+    .popup-btn.hydraulic:hover {
+      background: linear-gradient(to right, #123a22, #3a6246);
+      box-shadow: 0 8px 16px rgba(26, 77, 46, 0.45);
+    }
+    
+    .popup-btn.pneumatic {
+      background: linear-gradient(to right, var(--pneumatic-purple), var(--pneumatic-light));
+      box-shadow: 0 5px 12px rgba(92, 61, 122, 0.35);
+    }
+    
+    .popup-btn.pneumatic:hover {
+      background: linear-gradient(to right, #452c5a, #6d5384);
+      box-shadow: 0 8px 16px rgba(92, 61, 122, 0.45);
+    }
+    
+    .system-diagram {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    
+    .diagram-item {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      border: 1px solid #eaeaea;
+    }
+    
+    .diagram-item:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+      border-color: var(--secondary-blue);
+    }
+    
+    .diagram-item.hydraulic:hover {
+      border-color: var(--hydraulic-light);
+    }
+    
+    .diagram-item.pneumatic:hover {
+      border-color: var(--pneumatic-light);
+    }
+    
+    .diagram-img {
+      height: 220px;
+      width: 100%;
+      background: var(--light-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    }
+    
+    .diagram-img img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .diagram-caption {
+      padding: 15px;
+      text-align: center;
+      font-weight: 700;
+      color: var(--primary-blue);
+      background: #f0f7ff;
+      font-size: 1.05rem;
+    }
+    
+    .diagram-item.hydraulic .diagram-caption {
+      color: var(--hydraulic-green);
+      background: #e8f5e9;
+    }
+    
+    .diagram-item.pneumatic .diagram-caption {
+      color: var(--pneumatic-purple);
+      background: #f3e5f5;
+    }
+    
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.92);
+      z-index: 10000;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    
+    .modal.active {
+      display: flex;
+      opacity: 1;
+    }
+    
+    .modal-content {
+      background: white;
+      border-radius: 18px;
+      width: 92%;
+      max-width: 1000px;
+      max-height: 92vh;
+      overflow-y: auto;
+      position: relative;
+      transform: translateY(30px);
+      opacity: 0;
+      transition: all 0.5s ease;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.45);
+      border: 2px solid var(--secondary-blue);
+    }
+    
+    .modal.active .modal-content {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    
+    .modal-content.hydraulic {
+      border-color: var(--hydraulic-light);
+    }
+    
+    .modal-content.pneumatic {
+      border-color: var(--pneumatic-light);
+    }
+    
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 2.8rem;
+      color: var(--primary-blue);
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      z-index: 10;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    .close-modal:hover {
+      background: #ff5252;
+      color: white;
+      transform: rotate(90deg) scale(1.1);
+    }
+    
+    .modal-header {
+      background: linear-gradient(to right, var(--primary-blue), var(--secondary-blue));
+      color: white;
+      padding: 25px 30px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .modal-header::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      z-index: 0;
+    }
+    
+    .modal-header.hydraulic {
+      background: linear-gradient(to right, var(--hydraulic-green), var(--hydraulic-light));
+    }
+    
+    .modal-header.pneumatic {
+      background: linear-gradient(to right, var(--pneumatic-purple), var(--pneumatic-light));
+    }
+    
+    .modal-body {
+      padding: 30px;
+    }
+    
+    .modal-title {
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+      position: relative;
+      z-index: 1;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    
+    .modal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 28px;
+      margin-top: 25px;
+    }
+    
+    .modal-image {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      margin: 20px 0;
+      border: 3px solid #f1f5f9;
+      transition: transform 0.3s ease;
+    }
+    
+    .modal-image:hover {
+      transform: scale(1.02);
+    }
+    
+    .modal-section {
+      margin-bottom: 30px;
+      padding-bottom: 25px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .modal-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    
+    .modal-section h3 {
+      color: var(--primary-blue);
+      margin-bottom: 18px;
+      padding-bottom: 10px;
+      border-bottom: 3px solid var(--accent-gold);
+      font-size: 1.7rem;
+      font-weight: 700;
+    }
+    
+    .modal-section.hydraulic h3 {
+      color: var(--hydraulic-green);
+      border-bottom-color: var(--hydraulic-light);
+    }
+    
+    .modal-section.pneumatic h3 {
+      color: var(--pneumatic-purple);
+      border-bottom-color: var(--pneumatic-light);
+    }
+    
+    .spec-list {
+      background: #f8fbff;
+      border-left: 5px solid var(--secondary-blue);
+      padding: 18px;
+      margin: 20px 0;
+      border-radius: 0 10px 10px 0;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+    }
+    
+    .spec-list.hydraulic {
+      background: #eef8f0;
+      border-left-color: var(--hydraulic-light);
+    }
+    
+    .spec-list.pneumatic {
+      background: #f7f0fb;
+      border-left-color: var(--pneumatic-light);
+    }
+    
+    .spec-list ul {
+      padding-left: 25px;
+      margin-top: 10px;
+      line-height: 1.7;
+    }
+    
+    .spec-list li {
+      margin-bottom: 8px;
+      position: relative;
+      padding-left: 15px;
+    }
+    
+    .spec-list li::before {
+      content: "•";
+      color: var(--secondary-blue);
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+      font-size: 1.4rem;
+    }
+    
+    .spec-list.hydraulic li::before {
+      color: var(--hydraulic-light);
+    }
+    
+    .spec-list.pneumatic li::before {
+      color: var(--pneumatic-light);
+    }
+    
+    .note-box {
+      background: #e6f0ff;
+      border: 1px solid #bcd3f1;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 25px 0;
+      position: relative;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    }
+    
+    .note-box::before {
+      content: "ⓘ";
+      position: absolute;
+      top: -15px;
+      left: 20px;
+      background: var(--accent-gold);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: var(--primary-dark);
+      font-size: 1.1rem;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    .note-box.hydraulic {
+      background: #e8f5e9;
+      border-color: #a5d6a7;
+    }
+    
+    .note-box.pneumatic {
+      background: #f3e5f5;
+      border-color: #ce93d8;
+    }
+    
+    footer {
+      background: linear-gradient(135deg, var(--primary-dark), #072538);
+      color: var(--text-light);
+      text-align: center;
+      padding: 40px 20px 30px;
+      margin-top: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    footer::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(50, 140, 193, 0.15) 0%, transparent 70%);
+      z-index: 0;
+    }
+    
+    .footer-content {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      margin: 25px 0;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+    
+    .logo-item {
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 15px;
+      padding: 20px 25px;
+      min-width: 220px;
+      text-align: center;
+      transition: var(--transition);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .logo-item:hover {
+      background: rgba(255, 255, 255, 0.18);
+      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+    
+    .logo-item h3 {
+      margin-top: 12px;
+      font-size: 1.5rem;
+      color: var(--accent-gold);
+    }
+    
+    .creator-info {
+      background: rgba(11, 60, 93, 0.75);
+      border-radius: 15px;
+      padding: 25px;
+      margin-top: 25px;
+      border: 1px solid rgba(217, 179, 16, 0.3);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+    }
+    
+    .creator-info h3 {
+      color: var(--accent-gold);
+      margin-bottom: 12px;
+      font-size: 1.8rem;
+    }
+    
+    .creator-info p {
+      margin: 8px 0;
+      font-size: 1.15rem;
+      line-height: 1.6;
+    }
+    
+    .highlight {
+      background: linear-gradient(120deg, rgba(217, 179, 16, 0.3) 0%, rgba(217, 179, 16, 0) 100%);
+      padding: 3px 10px;
+      border-radius: 5px;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+    
+    .component-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 18px;
+      margin: 25px 0;
+    }
+    
+    .component-card {
+      background: #f8f9fa;
+      border-radius: 12px;
+      padding: 20px 15px;
+      text-align: center;
+      border: 1px solid #e0e6ed;
+      transition: var(--transition);
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+    }
+    
+    .component-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+      border-color: var(--secondary-blue);
+    }
+    
+    .component-card.hydraulic:hover {
+      border-color: var(--hydraulic-light);
+    }
+    
+    .component-card.pneumatic:hover {
+      border-color: var(--pneumatic-light);
+    }
+    
+    .component-card h4 {
+      margin: 12px 0 8px;
+      color: var(--primary-blue);
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+    
+    .component-card.hydraulic h4 {
+      color: var(--hydraulic-green);
+    }
+    
+    .component-card.pneumatic h4 {
+      color: var(--pneumatic-purple);
+    }
+    
+    .component-icon {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      display: block;
+    }
+    
+    .steering-diagram {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 30px 0;
+      background: white;
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: var(--shadow);
+      border: 2px solid #eaeaea;
+    }
+    
+    .steering-diagram img {
+      max-width: 100%;
+      border-radius: 12px;
+      margin: 20px 0;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+      border: 3px solid #f1f5f9;
+      max-height: 450px;
+      object-fit: contain;
+    }
+    
+    .steering-diagram .caption {
+      font-weight: 700;
+      color: var(--primary-blue);
+      margin-top: 15px;
+      text-align: center;
+      font-size: 1.3rem;
+      padding-top: 10px;
+      border-top: 2px solid var(--accent-gold);
+    }
+    
+    .section-badge {
+      display: inline-block;
+      background: var(--accent-gold);
+      color: var(--primary-dark);
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-weight: 700;
+      margin: 10px 0;
+      letter-spacing: 0.5px;
+      font-size: 0.95rem;
+    }
+    
+    .section-badge.hydraulic {
+      background: #c8e6c9;
+      color: var(--hydraulic-green);
+    }
+    
+    .section-badge.pneumatic {
+      background: #e1bee7;
+      color: var(--pneumatic-purple);
+    }
+    
+    @media (max-width: 768px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      
+      header h1 {
+        font-size: 2.5rem;
+      }
+      
+      header p {
+        font-size: 1.2rem;
+      }
+      
+      .popup-btn {
+        width: 100%;
+        margin: 10px 0;
+        padding: 12px;
+        font-size: 1.05rem;
+      }
+      
+      .modal-content {
+        width: 95%;
+        margin: 15px;
+        max-height: 95vh;
+      }
+      
+      .modal-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .card-header {
+        font-size: 1.4rem;
+        padding: 1.2rem 1.5rem;
+      }
+      
+      .section-title {
+        font-size: 1.9rem;
+      }
+      
+      .logo-item {
+        min-width: 180px;
+        padding: 15px;
+      }
+      
+      .creator-info {
+        padding: 20px 15px;
+      }
+      
+      .component-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
+    }
+    
+    .system-overview {
+      background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(240,247,255,0.9) 100%);
+      border-radius: 15px;
+      padding: 25px;
+      margin: 25px 0;
+      border: 1px solid #d1e0f0;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    }
+    
+    .system-overview.hydraulic {
+      background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(232,245,233,0.9) 100%);
+      border-color: #c8e6c9;
+    }
+    
+    .system-overview.pneumatic {
+      background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(243,229,245,0.9) 100%);
+      border-color: #e1bee7;
+    }
+    
+    .system-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 15px 0;
+    }
+    
+    .tag {
+      background: var(--secondary-blue);
+      color: white;
+      padding: 5px 12px;
+      border-radius: 15px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    
+    .tag.hydraulic {
+      background: var(--hydraulic-light);
+    }
+    
+    .tag.pneumatic {
+      background: var(--pneumatic-light);
+    }
+    
+    .section-divider {
+      height: 3px;
+      background: linear-gradient(to right, transparent, var(--accent-gold), transparent);
+      margin: 35px 0;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>RAVINDO LEARNING SYSTEM</h1>
+      <p>Sistem Pembelajaran Terintegrasi untuk Komunitas Pelaut & Taruna Maritim</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- DOL Starter Section -->
+    <section id="dol">
+      <h2 class="section-title">🔧 STARTER DOL (DIRECT ON LINE)</h2>
+      <p class="section-subtitle">Sistem starter motor untuk pompa kapal, fan, dan auxiliary machinery</p>
+      <div class="card">
+        <div class="card-header">⚡ Sistem Starter DOL untuk Motor Pompa Kapal</div>
+        <div class="card-body">
+          <p><strong>Fungsi:</strong> Menjalankan motor 3 fasa langsung dengan tegangan penuh. Umum digunakan untuk pompa kecil, fan, dan auxiliary system kapal.</p>
+          
+          <div class="system-diagram">
+            <div class="diagram-item">
+              <div class="diagram-img">
+                <img src="https://www.electricaltechnology.org/wp-content/uploads/2020/06/DOL-Starter-Power-and-Control-Circuit.png" alt="DOL Power & Control Circuit">
+              </div>
+              <div class="diagram-caption">Rangkaian Power & Control</div>
+            </div>
+            <div class="diagram-item">
+              <div class="diagram-img">
+                <img src="https://circuitglobe.com/wp-content/uploads/2016/03/dol-starter-circuit-diagram.jpeg" alt="DOL Wiring Diagram">
+              </div>
+              <div class="diagram-caption">Diagram Wiring Lengkap</div>
+            </div>
+            <div class="diagram-item">
+              <div class="diagram-img">
+                <img src="https://www.electrical4u.com/wp-content/uploads/What-is-a-DOL-Starter.jpeg" alt="DOL Components">
+              </div>
+              <div class="diagram-caption">Komponen Utama DOL</div>
+            </div>
+          </div>
+          
+          <div class="note-box">
+            <strong>Catatan Penting:</strong> DOL memiliki arus start besar (5-7x arus nominal), sehingga proteksi overload dan grounding wajib diperhatikan. Sistem ini cocok untuk motor <10 HP di kapal.
+          </div>
+          
+          <h3 style="margin: 25px 0 15px; color: var(--primary-blue);">Komponen Utama Sistem DOL:</h3>
+          <div class="component-grid">
+            <div class="component-card">
+              <div class="component-icon">⚡</div>
+              <h4>MCB/MCCB</h4>
+              <p>Proteksi hubung singkat</p>
+            </div>
+            <div class="component-card">
+              <div class="component-icon">🔌</div>
+              <h4>Contactor</h4>
+              <p>Penghubung motor</p>
+            </div>
+            <div class="component-card">
+              <div class="component-icon">🌡️</div>
+              <h4>Overload Relay</h4>
+              <p>Proteksi beban lebih</p>
+            </div>
+            <div class="component-card">
+              <div class="component-icon">🔘</div>
+              <h4>Push Button</h4>
+              <p>START/STOP kontrol</p>
+            </div>
+          </div>
+          
+          <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/6c8B8mR4J4g" title="Penjelasan Sistem DOL" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          
+          <div style="text-align: center; margin-top: 25px;">
+            <button class="popup-btn" data-target="dol-popup">
+              <span>📘</span> Detail Sistem DOL Lengkap
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Star-Delta Starter Section -->
+    <section id="star-delta">
+      <h2 class="section-title">⚡ STARTER STAR-DELTA</h2>
+      <p class="section-subtitle">Sistem starter untuk motor berdaya menengah-besar dengan pengurangan arus start</p>
+      <div class="card">
+        <div class="card-header">🔄 Sistem Starter Star-Delta untuk Motor Berdaya Menengah-Besar</div>
+        <div class="card-body">
+          <p><strong>Fungsi:</strong> Mengurangi arus start dengan mengawali motor dalam hubungan STAR (Y) lalu berpindah ke DELTA (Δ) setelah motor mencapai 80% kecepatan nominal.</p>
+          
+          <div class="system-diagram">
+            <div class="diagram-item">
+              <div class="diagram-img">
+                <img src="https://www.electricaltechnology.org/wp-content/uploads/2020/06/Star-Delta-Starter-Power-and-Control-Circuit.png" alt="Star Delta Circuit">
+              </div>
+              <div class="diagram-caption">Rangkaian Power & Control</div>
+            </div>
+            <div class="diagram-item">
+              <div class="diagram-img">
+                <img src="https://circuitglobe.com/wp-content/uploads/2016/03/star-delta-starter-circuit-diagram.jpeg" alt="Star Delta Wiring">
+              </div>
+              <div class="diagram-caption">Wiring Diagram Lengkap</div>
+            </div>
+            <div class="diagram-item">
+              <div class="diagram-img">
+                <img src="https://www.electrical4u.com/wp-content/uploads/What-is-Star-Delta-Starter.jpeg" alt="Star Delta Components">
+              </div>
+              <div class="diagram-caption">Komponen Utama</div>
+            </div>
+          </div>
+          
+          <div class="note-box">
+            <strong>Perhatian:</strong> Kontaktor STAR dan DELTA tidak boleh aktif bersamaan. Interlock mekanik dan elektrik adalah kunci keselamatan sistem ini. Timer setting biasanya 3-10 detik tergantung ukuran motor.
+          </div>
+          
+          <h3 style="margin: 25px 0 15px; color: var(--primary-blue);">Komponen Khusus Star-Delta:</h3>
+          <div class="component-grid">
+            <div class="component-card">
+              <div class="component-icon">⏱️</div>
+              <h4>Timer</h4>
+              <p>Pengatur waktu perpindahan</p>
+            </div>
+            <div class="component-card">
+              <div class="component-icon">🔌</div>
+              <h4>3 Contactor</h4>
+              <p>Main, Star, dan Delta</p>
+            </div>
+            <div class="component-card">
+              <div class="component-icon">🔄</div>
+              <h4>Interlock</h4>
+              <p>Pencegah aktif bersamaan</p>
+            </div>
+            <div class="component-card">
+              <div class="component-icon">🔌</div>
+              <h4>Motor 6 Terminal</h4>
+              <p>U1,V1,W1 & U2,V2,W2</p>
+            </div>
+          </div>
+          
+          <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/5kYR8yZ7XqE" title="Penjelasan Sistem Star-Delta" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          
+          <div style="text-align: center; margin-top: 25px;">
+            <button class="popup-btn" data-target="stardelta-popup">
+              <span>📘</span> Detail Sistem Star-Delta Lengkap
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Marine Hydraulic Systems Section -->
+    <section id="hydraulic-systems">
+      <h2 class="section-title">💧 MARINE HYDRAULIC SYSTEMS</h2>
+      <p class="section-subtitle">Sistem hidrolik untuk steering gear, windlass, crane, dan sistem kontrol kapal</p>
+      <div class="card">
+        <div class="card-header hydraulic">⚙️ Sistem Hidrolik Kapal - Prinsip Pascal & Aplikasi</div>
+        <div class="card-body">
+          <div class="system-overview hydraulic">
+            <p><strong>Prinsip Dasar:</strong> Sistem hidrolik bekerja berdasarkan Hukum Pascal - tekanan yang diberikan pada fluida dalam ruang tertutup akan diteruskan ke segala arah dengan sama besar. Sistem ini mengubah energi mekanik menjadi energi fluida bertekanan, lalu kembali menjadi energi mekanik melalui aktuator.</p>
+            <div class="system-tags">
+              <span class="tag hydraulic">Steering Gear</span>
+              <span class="tag hydraulic">Windlass</span>
+              <span class="tag hydraulic">Crane</span>
+              <span class="tag hydraulic">Deck Machinery</span>
+              <span class="tag hydraulic">Power Systems</span>
+            </div>
+          </div>
+          
+          <div class="system-diagram">
+            <div class="diagram-item hydraulic">
+              <div class="diagram-img">
+                <img src="https://www.marineinsight.com/wp-content/uploads/2019/08/hydraulic-system-on-ships.jpg" alt="Marine Hydraulic System">
+              </div>
+              <div class="diagram-caption">Sistem Hydraulic Kapal</div>
+            </div>
+            <div class="diagram-item hydraulic">
+              <div class="diagram-img">
+                <img src="https://www.ship-technology.com/wp-content/uploads/sites/10/2018/07/1-27.jpg" alt="Hydraulic Steering">
+              </div>
+              <div class="diagram-caption">Steering Gear Hydraulic</div>
+            </div>
+            <div class="diagram-item hydraulic">
+              <div class="diagram-img">
+                <img src="https://www.marinespareparts.eu/image/cache/catalog/steering/hydraulic-steering-system-800x800.jpg" alt="Hydraulic Components">
+              </div>
+              <div class="diagram-caption">Komponen Utama</div>
+            </div>
+          </div>
+          
+          <div class="steering-diagram">
+            <h3 style="color: var(--hydraulic-green); margin-bottom: 15px; font-size: 1.8rem;">Diagram Sistem Steering Hydraulic</h3>
+            <img src="https://www.marine-part.com/image/cache/catalog/hydraulic-steering-system-for-boat-600x600.jpg" alt="Hydraulic Steering Diagram">
+            <div class="caption">Sistem steering hydraulic dengan dual pump untuk redundancy sesuai SOLAS</div>
+          </div>
+          
+          <div class="note-box hydraulic">
+            <strong>Keunggulan Sistem Hydraulic di Kapal:</strong> 
+            <ul style="margin-top: 10px; padding-left: 25px; line-height: 1.7;">
+              <li>Power density tinggi (tenaga besar pada ukuran kecil)</li>
+              <li>Presisi kontrol yang baik untuk aplikasi berat</li>
+              <li>Kemampuan menahan beban tanpa konsumsi energi</li>
+              <li>Cocok untuk aplikasi high-torque seperti steering gear</li>
+              <li>Redundancy system untuk keandalan operasional</li>
+            </ul>
+          </div>
+          
+          <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/8uE0Zfz3S4Y" title="Sistem Hydraulic Kapal" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          
+          <div style="text-align: center; margin-top: 25px;">
+            <button class="popup-btn hydraulic" data-target="hydraulic-system-popup">
+              <span>📘</span> Detail Sistem Hydraulic
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hydraulic Actuators & Steering Section -->
+    <section id="hydraulic-actuators">
+      <h2 class="section-title">⚙️ HYDRAULIC ACTUATORS & STEERING</h2>
+      <p class="section-subtitle">Actuator hidrolik untuk steering gear, rudder control, dan sistem gerakan kapal</p>
+      <div class="card">
+        <div class="card-header hydraulic">🧭 Actuator Hidrolik - Linear, Rotary & Servo Valve</div>
+        <div class="card-body">
+          <div class="system-overview hydraulic">
+            <p><strong>Fungsi Utama:</strong> Mengubah energi fluida bertekanan menjadi gerakan mekanik untuk mengendalikan kemudi kapal, mengoperasikan crane, windlass, dan peralatan deck machinery lainnya.</p>
+            <div class="system-tags">
+              <span class="tag hydraulic">Linear Actuator</span>
+              <span class="tag hydraulic">Rotary Actuator</span>
+              <span class="tag hydraulic">Servo Valve</span>
+              <span class="tag hydraulic">Rudder Control</span>
+              <span class="tag hydraulic">Steering Systems</span>
+            </div>
+          </div>
+          
+          <div class="system-diagram">
+            <div class="diagram-item hydraulic">
+              <div class="diagram-img">
+                <img src="https://www.surpluscenter.com/images/9-7920-1s.jpg" alt="Hydraulic Cylinder">
+              </div>
+              <div class="diagram-caption">Linear Actuator (Silinder)</div>
+            </div>
+            <div class="diagram-item hydraulic">
+              <div class="diagram-img">
+                <img src="https://www.fluidpowerjournal.com/wp-content/uploads/2019/08/hydraulic-motor-types.jpg" alt="Hydraulic Motor">
+              </div>
+              <div class="diagram-caption">Rotary Actuator (Motor)</div>
+            </div>
+            <div class="diagram-item hydraulic">
+              <div class="diagram-img">
+                <img src="https://www.motionsystemsdesign.com/files/2015/09/servo-valve-diagram.jpg" alt="Servo Valve">
+              </div>
+              <div class="diagram-caption">Servo Valve Control</div>
+            </div>
+            <div class="diagram-item hydraulic">
+              <div class="diagram-img">
+                <img src="https://www.marine-part.com/image/cache/catalog/hydraulic-rudder-actuator-800x800.jpg" alt="Rudder Actuator">
+              </div>
+              <div class="diagram-caption">Rudder Actuator System</div>
+            </div>
+          </div>
+          
+          <div class="note-box hydraulic">
+            <strong>Aplikasi di Kapal:</strong> 
+            <ul style="margin-top: 10px; padding-left: 25px; line-height: 1.7;">
+              <li><span class="highlight">Steering Gear:</span> Ram type dan rotary vane untuk pengendalian kemudi</li>
+              <li><span class="highlight">Deck Crane:</span> Slewing mechanism dan hoisting systems</li>
+              <li><span class="highlight">Windlass & Mooring Winch:</span> Untuk operasi jangkar dan tambat</li>
+              <li><span class="highlight">Stabilizer Fins:</span> Untuk mengurangi olengan kapal saat pelayaran</li>
+              <li><span class="highlight">Watertight Doors:</span> Pintu kedap air yang dioperasikan secara hydraulic</li>
+            </ul>
+          </div>
+          
+          <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/4J5Yz0XZ7kE" title="Hydraulic Actuators in Marine Applications" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          
+          <div style="text-align: center; margin-top: 25px;">
+            <button class="popup-btn hydraulic" data-target="hydraulic-actuator-popup">
+              <span>📘</span> Detail Actuator & Steering
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hydraulic Sensors Section -->
+    <section id="hydraulic-sensors">
+      <h2 class="section-title">📡 HYDRAULIC SENSORS & INSTRUMENTATION</h2>
+      <p class="section-subtitle">Sensor tekanan, flow, level, dan temperature untuk sistem hidrolik kapal</p>
+      <div class="card">
+        <div class="card-header hydraulic">🔍 Sensor & Instrumentasi Sistem Hydraulic</div>
+        <div class="card-body">
+          <div class="system-overview hydraulic">
+            <p><strong>Fungsi Utama:</strong> Memantau parameter operasional sistem hydraulic untuk memastikan keandalan, keamanan, dan efisiensi operasional. Sensor memberikan data kritis untuk sistem monitoring, kontrol otomatis, dan early warning system.</p>
+            <div class="system-tags">
+              <span class="tag hydraulic">Pressure Sensors</span>
+              <span class="tag hydraulic">Flow Sensors</span>
+              <span class="tag hydraulic">Level Sensors</span>
+              <span class="tag hydraulic">Temperature Sensors</span>
+              <span class="tag hydraulic">Instrumentation</span>
+            </div>
+          </div>
+          
+          <div class="system-diagram">
+            <div class="diagram-item hydraulic">
+              <div class="diagram-img">
+                <img src="https://www.sensorsmag.com/files/2021/03/hydraulic-pressure-sensor.jpg" alt="Pressure Sensor">
+              </div>
+              <div class="diagram-caption">Pressure Sensor</div>
+            </div>
+            <div class="diagram-item hydraulic">
+              <div class="diagram-img">
+                <img src="https://www.flowmeters.com/wp-content/uploads/2020/07/hydraulic-flow-meter.jpg" alt="Flow Sensor">
+              </div>
+              <div class="diagram-caption">Flow Sensor/Meter</div>
+            </div>
+            <div class="diagram-item hydraulic">
+              <div class="diagram-img">
+                <img src="https://www.omega.com/technical-resources/images/level-sensor-diagram.jpg" alt="Level Sensor">
+              </div>
+              <div class="diagram-caption">Level Sensor</div>
+            </div>
+            <div class="diagram-item hydraulic">
+              <div class="diagram-img">
+                <img src="https://www.omega.com/technical-resources/images/temperature-sensor-types.jpg" alt="Temperature Sensor">
+              </div>
+              <div class="diagram-caption">Temperature Sensor</div>
+            </div>
+          </div>
+          
+          <div class="note-box hydraulic">
+            <strong>Parameter Monitoring Kritis:</strong> 
+            <ul style="margin-top: 10px; padding-left: 25px; line-height: 1.7;">
+              <li><span class="highlight">Tekanan Sistem:</span> Memastikan operasi dalam range aman dan mendeteksi kebocoran</li>
+              <li><span class="highlight">Flow Rate:</span> Memantau kinerja pompa dan mendeteksi penyumbatan</li>
+              <li><span class="highlight">Level Fluida:</span> Mencegah kerusakan pompa akibat kekurangan fluida</li>
+              <li><span class="highlight">Suhu Fluida:</span> Mendeteksi overheating yang dapat merusak seal dan komponen</li>
+              <li><span class="highlight">Kualitas Fluida:</span> Monitoring kontaminasi dan degradasi oli hydraulic</li>
+            </ul>
+          </div>
+          
+          <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Hydraulic Sensors and Instrumentation" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          
+          <div style="text-align: center; margin-top: 25px;">
+            <button class="popup-btn hydraulic" data-target="hydraulic-sensor-popup">
+              <span>📘</span> Detail Sensors & Instrumentation
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Marine Pneumatic Systems Section -->
+    <section id="pneumatic-systems">
+      <h2 class="section-title">💨 MARINE PNEUMATIC SYSTEMS</h2>
+      <p class="section-subtitle">Sistem pneumatik untuk kontrol valve, instrumentasi, dan automation kapal</p>
+      <div class="card">
+        <div class="card-header pneumatic">🎛️ Sistem Pneumatik Kapal - Kompresor, Regulator & Valve</div>
+        <div class="card-body">
+          <div class="system-overview pneumatic">
+            <p><strong>Prinsip Dasar:</strong> Sistem pneumatik menggunakan udara bertekanan sebagai media kerja untuk mengoperasikan peralatan kontrol, instrumentasi, dan sistem otomasi di kapal. Udara dikompresi, dikeringkan, lalu didistribusikan ke berbagai titik penggunaan.</p>
+            <div class="system-tags">
+              <span class="tag pneumatic">Control Valve</span>
+              <span class="tag pneumatic">Instrumentation</span>
+              <span class="tag pneumatic">Automation</span>
+              <span class="tag pneumatic">Kompresor</span>
+              <span class="tag pneumatic">Regulator</span>
+            </div>
+          </div>
+          
+          <div class="system-diagram">
+            <div class="diagram-item pneumatic">
+              <div class="diagram-img">
+                <img src="https://www.marineinsight.com/wp-content/uploads/2019/08/pneumatic-system-on-ships.jpg" alt="Marine Pneumatic System">
+              </div>
+              <div class="diagram-caption">Sistem Pneumatic Kapal</div>
+            </div>
+            <div class="diagram-item pneumatic">
+              <div class="diagram-img">
+                <img src="https://www.airbestpractices.com/sites/default/files/styles/article_featured_standard/public/field/image/Compressed%20Air%20System%20-%20Schematic%20Diagram.jpg" alt="Pneumatic Diagram">
+              </div>
+              <div class="diagram-caption">Diagram Sistem Udara Tekan</div>
+            </div>
+            <div class="diagram-item pneumatic">
+              <div class="diagram-img">
+                <img src="https://www.marineengineeringonline.com/wp-content/uploads/2018/05/pneumatic-valve-positioner.jpg" alt="Pneumatic Components">
+              </div>
+              <div class="diagram-caption">Komponen Utama</div>
+            </div>
+          </div>
+          
+          <div class="note-box pneumatic">
+            <strong>Keunggulan Sistem Pneumatic di Kapal:</strong> 
+            <ul style="margin-top: 10px; padding-left: 25px; line-height: 1.7;">
+              <li>Aman untuk area berbahaya (tidak ada percikan api)</li>
+              <li>Respons cepat untuk aplikasi kontrol presisi</li>
+              <li>Perawatan lebih sederhana dibanding hydraulic</li>
+              <li>Cocok untuk instrumentasi dan control systems</li>
+              <li>Media kerja (udara) mudah didapat dan tidak beracun</li>
+            </ul>
+          </div>
+          
+          <h3 style="margin: 25px 0 15px; color: var(--pneumatic-purple);">Aplikasi Utama di Kapal:</h3>
+          <div class="component-grid">
+            <div class="component-card pneumatic">
+              <div class="component-icon">⚙️</div>
+              <h4>Control Valve</h4>
+              <p>Posisi valve engine room</p>
+            </div>
+            <div class="component-card pneumatic">
+              <div class="component-icon">🔧</div>
+              <h4>Pneumatic Tools</h4>
+              <p>Impact wrench, grinders</p>
+            </div>
+            <div class="component-card pneumatic">
+              <div class="component-icon">🚨</div>
+              <h4>Safety Systems</h4>
+              <p>Emergency shutdown</p>
+            </div>
+            <div class="component-card pneumatic">
+              <div class="component-icon">🚢</div>
+              <h4>Deck Machinery</h4>
+              <p>Winch control systems</p>
+            </div>
+          </div>
+          
+          <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/3XbZ0X4sXqY" title="Sistem Pneumatic Kapal" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          
+          <div style="text-align: center; margin-top: 25px;">
+            <button class="popup-btn pneumatic" data-target="pneumatic-system-popup">
+              <span>📘</span> Detail Sistem Pneumatic
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pneumatic Actuators Section -->
+    <section id="pneumatic-actuators">
+      <h2 class="section-title">⚙️ PNEUMATIC ACTUATORS & CONTROLS</h2>
+      <p class="section-subtitle">Actuator pneumatik untuk valve control, automation, dan sistem instrumentasi kapal</p>
+      <div class="card">
+        <div class="card-header pneumatic">🔧 Actuator Pneumatik - Diaphragm, Piston & Rotary</div>
+        <div class="card-body">
+          <div class="system-overview pneumatic">
+            <p><strong>Fungsi Utama:</strong> Mengubah energi udara bertekanan menjadi gerakan mekanik untuk mengendalikan valve, mengoperasikan peralatan kontrol, dan menjalankan sistem otomasi di berbagai area kapal.</p>
+            <div class="system-tags">
+              <span class="tag pneumatic">Diaphragm Actuator</span>
+              <span class="tag pneumatic">Piston Actuator</span>
+              <span class="tag pneumatic">Rotary Actuator</span>
+              <span class="tag pneumatic">Valve Control</span>
+              <span class="tag pneumatic">Automation Systems</span>
+            </div>
+          </div>
+          
+          <div class="system-diagram">
+            <div class="diagram-item pneumatic">
+              <div class="diagram-img">
+                <img src="https://www.valin.com/media/1430/diaphragm-actuator-diagram.jpg" alt="Diaphragm Actuator">
+              </div>
+              <div class="diagram-caption">Diaphragm Actuator</div>
+            </div>
+            <div class="diagram-item pneumatic">
+              <div class="diagram-img">
+                <img src="https://www.spartanics.com/wp-content/uploads/2020/07/piston-actuator-diagram.jpg" alt="Piston Actuator">
+              </div>
+              <div class="diagram-caption">Piston Actuator</div>
+            </div>
+            <div class="diagram-item pneumatic">
+              <div class="diagram-img">
+                <img src="https://www.valin.com/media/1431/rotary-actuator-diagram.jpg" alt="Rotary Actuator">
+              </div>
+              <div class="diagram-caption">Rotary Actuator</div>
+            </div>
+            <div class="diagram-item pneumatic">
+              <div class="diagram-img">
+                <img src="https://www.marineengineeringonline.com/wp-content/uploads/2018/05/pneumatic-valve-positioner-diagram.jpg" alt="Valve Control">
+              </div>
+              <div class="diagram-caption">Valve Control System</div>
+            </div>
+          </div>
+          
+          <div class="note-box pneumatic">
+            <strong>Aplikasi di Kapal:</strong> 
+            <ul style="margin-top: 10px; padding-left: 25px; line-height: 1.7;">
+              <li><span class="highlight">Engine Room Valve Control:</span> Remote operation untuk valve pada sistem bahan bakar, pelumas, dan pendingin</li>
+              <li><span class="highlight">Cargo Handling Systems:</span> Kontrol valve pada sistem transfer muatan cair</li>
+              <li><span class="highlight">Safety Systems:</span> Quick closing valve untuk fire safety systems</li>
+              <li><span class="highlight">Automation Systems:</span> Pengendalian proses otomatis pada berbagai sistem kapal</li>
+              <li><span class="highlight">Instrumentation:</span> Positioner untuk kontrol presisi valve</li>
+            </ul>
+          </div>
+          
+          <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/9XcJqQ7yQkM" title="Pneumatic Actuators in Marine Applications" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          
+          <div style="text-align: center; margin-top: 25px;">
+            <button class="popup-btn pneumatic" data-target="pneumatic-actuator-popup">
+              <span>📘</span> Detail Actuators & Controls
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- MODALS -->
+  
+  <!-- DOL Popup -->
+  <div id="dol-popup" class="modal">
+    <div class="modal-content">
+      <button class="close-modal">&times;</button>
+      <div class="modal-header">
+        <h2 class="modal-title">Detail Sistem Starter DOL (Direct On Line)</h2>
+      </div>
+      <div class="modal-body">
+        <div class="modal-section">
+          <h3>Prinsip Kerja</h3>
+          <p>Sistem DOL (Direct On Line) adalah metode starting motor induksi 3 fasa yang paling sederhana. Motor dihubungkan langsung ke sumber listrik pada tegangan penuh saat start. Metode ini menghasilkan torsi start tinggi namun dengan arus start yang besar (5-7 kali arus nominal).</p>
+          
+          <img src="https://www.electricaltechnology.org/wp-content/uploads/2020/06/DOL-Starter-Power-and-Control-Circuit.png" alt="DOL Circuit Diagram" class="modal-image">
+          
+          <div class="note-box">
+            <strong>Catatan Keselamatan:</strong> Karena arus start yang besar, sistem DOL hanya direkomendasikan untuk motor dengan kapasitas di bawah 10 HP di instalasi kapal. Untuk motor yang lebih besar, gunakan metode starting lain seperti Star-Delta atau Auto Transformer.
+          </div>
+        </div>
+        
+        <div class="modal-section">
+          <h3>Komponen Utama</h3>
+          <div class="spec-list">
+            <ul>
+              <li><span class="highlight">MCB/MCCB 3 Phase:</span> Proteksi hubung singkat (short circuit)</li>
+              <li><span class="highlight">Magnetic Contactor:</span> Saklar elektromagnetik untuk menghubungkan/memutus motor</li>
+              <li><span class="highlight">Thermal Overload Relay:</span> Proteksi beban lebih (overload) pada motor</li>
+              <li><span class="highlight">Push Button START (NO):</span> Untuk mengaktifkan sistem</li>
+              <li><span class="highlight">Push Button STOP (NC):</span> Untuk mematikan sistem (selalu Normally Closed)</li>
+              <li><span class="highlight">Auxiliary Contact:</span> Untuk holding circuit (mempertahankan kontak ON)</li>
+              <li><span class="highlight">Indicator Lamp:</span> Indikator RUN, STOP, dan TRIP</li>
+              <li><span class="highlight">Control Fuse:</span> Proteksi rangkaian kontrol</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="modal-section">
+          <h3>Urutan Kerja Sistem</h3>
+          <ol style="padding-left: 25px; margin: 15px 0; line-height: 1.8;">
+            <li>Main switch diaktifkan</li>
+            <li>MCB/MCCB diaktifkan</li>
+            <li>Tombol START ditekan → Coil contactor energized</li>
+            <li>Contactor utama menutup → Arus mengalir ke motor</li>
+            <li>Auxiliary contact menutup → Mempertahankan kontak ON (holding)</li>
+            <li>Motor berputar pada tegangan penuh</li>
+            <li>Jika terjadi overload → Overload relay trip → Memutus holding circuit</li>
+            <li>Jika tombol STOP ditekan → Memutus holding circuit → Motor berhenti</li>
+          </ol>
+          
+          <div class="note-box">
+            <strong>Tips untuk Taruna:</strong> Selalu periksa setting arus pada Thermal Overload Relay sesuai nameplate motor. Setting yang terlalu tinggi tidak akan melindungi motor, sedangkan setting terlalu rendah menyebabkan nuisance tripping.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Star-Delta Popup -->
+  <div id="stardelta-popup" class="modal">
+    <div class="modal-content">
+      <button class="close-modal">&times;</button>
+      <div class="modal-header">
+        <h2 class="modal-title">Detail Sistem Starter Star-Delta</h2>
+      </div>
+      <div class="modal-body">
+        <div class="modal-section">
+          <h3>Prinsip Kerja</h3>
+          <p>Sistem Star-Delta digunakan untuk mengurangi arus start motor induksi 3 fasa. Pada saat start, belitan motor dihubungkan secara STAR (Y) yang mengurangi tegangan tiap belitan menjadi 1/√3 tegangan line. Setelah motor mencapai kecepatan ~80% nominal, belitan diubah ke hubungan DELTA (Δ) untuk operasi normal pada tegangan penuh.</p>
+          
+          <img src="https://www.electricaltechnology.org/wp-content/uploads/2020/06/Star-Delta-Starter-Power-and-Control-Circuit.png" alt="Star Delta Circuit" class="modal-image">
+          
+          <div class="note-box">
+            <strong>Catatan Penting:</strong> Hanya motor dengan 6 terminal (U1, V1, W1, U2, V2, W2) yang dapat menggunakan sistem Star-Delta. Motor dengan 3 terminal tidak dapat dihubungkan secara Star-Delta.
+          </div>
+        </div>
+        
+        <div class="modal-section">
+          <h3>Komponen Khusus Star-Delta</h3>
+          <div class="spec-list">
+            <ul>
+              <li><span class="highlight">3 Buah Contactor:</span> Main (KM1), Star (KM2), dan Delta (KM3)</li>
+              <li><span class="highlight">Timer On-Delay:</span> Mengatur waktu perpindahan dari STAR ke DELTA (biasanya 3-10 detik)</li>
+              <li><span class="highlight">Interlock:</span> Mekanik dan elektrik untuk mencegah KM2 (Star) dan KM3 (Delta) aktif bersamaan</li>
+              <li><span class="highlight">Thermal Overload Relay:</span> Dipasang setelah contactor utama</li>
+              <li><span class="highlight">Push Button START/STOP:</span> Untuk kontrol operasi</li>
+              <li><span class="highlight">Indicator Lamp:</span> Indikator STAR, DELTA, dan TRIP</li>
+            </ul>
+          </div>
+          
+          <h3 style="margin: 20px 0 10px;">Urutan Kerja Sistem:</h3>
+          <ol style="padding-left: 25px; line-height: 1.8;">
+            <li>Tombol START ditekan → KM1 (Main) dan KM2 (Star) aktif</li>
+            <li>Motor berjalan dalam hubungan STAR dengan torsi dan arus start rendah</li>
+            <li>Timer mulai menghitung</li>
+            <li>Setelah waktu habis, KM2 (Star) mati dan KM3 (Delta) aktif</li>
+            <li>Motor beroperasi normal dalam hubungan DELTA</li>
+            <li>Jika terjadi overload → Semua contactor mati</li>
+          </ol>
+        </div>
+        
+        <div class="modal-section">
+          <h3>Perbandingan DOL vs Star-Delta</h3>
+          <table style="width: 100%; border-collapse: collapse; margin: 15px 0; border-radius: 8px; overflow: hidden; box-shadow: 0 3px 8px rgba(0,0,0,0.1);">
+            <tr style="background-color: #eaf3ff;">
+              <th style="padding: 12px; text-align: left; border: 1px solid #ddd; font-weight: 700;">Parameter</th>
+              <th style="padding: 12px; text-align: left; border: 1px solid #ddd; font-weight: 700;">DOL Starter</th>
+              <th style="padding: 12px; text-align: left; border: 1px solid #ddd; font-weight: 700;">Star-Delta Starter</th>
+            </tr>
+            <tr>
+              <td style="padding: 10px; border: 1px solid #ddd; font-weight: 500;">Arus Start</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">5-7 x I<sub>nominal</sub></td>
+              <td style="padding: 10px; border: 1px solid #ddd;">1.7-2.5 x I<sub>nominal</sub></td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 10px; border: 1px solid #ddd; font-weight: 500;">Torsi Start</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">Tinggi (100%)</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">Rendah (33%)</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px; border: 1px solid #ddd; font-weight: 500;">Kompleksitas</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">Sederhana</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">Lebih kompleks</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 10px; border: 1px solid #ddd; font-weight: 500;">Biaya</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">Lebih murah</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">Lebih mahal</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px; border: 1px solid #ddd; font-weight: 500;">Aplikasi Kapal</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">Motor kecil (<10 HP)</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">Motor menengah-besar (10-75 HP)</td>
+            </tr>
+          </table>
+          
+          <div class="note-box">
+            <strong>Tips untuk Taruna:</strong> Setting waktu timer sangat kritis. Terlalu cepat → motor belum mencapai kecepatan cukup → shock saat pindah ke DELTA. Terlalu lambat → motor terlalu panas dalam hubungan STAR. Setting optimal biasanya saat motor mencapai 75-80% kecepatan nominal.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Hydraulic System Popup -->
+  <div id="hydraulic-system-popup" class="modal">
+    <div class="modal-content hydraulic">
+      <button class="close-modal">&times;</button>
+      <div class="modal-header hydraulic">
+        <h2 class="modal-title">Sistem Hydraulic Kapal - Gambaran Umum</h2>
+      </div>
+      <div class="modal-body">
+        <div class="modal-section hydraulic">
+          <h3>Prinsip Dasar Sistem Hydraulic</h3>
+          <p>Sistem hydraulic bekerja berdasarkan Hukum Pascal: tekanan yang diberikan pada fluida dalam ruang tertutup akan diteruskan ke segala arah dengan sama besar. Sistem ini mengubah energi mekanik (dari pompa) menjadi energi fluida (tekanan), lalu kembali menjadi energi mekanik (gerakan linear atau rotari) melalui aktuator.</p>
+          
+          <img src="https://www.marineinsight.com/wp-content/uploads/2019/08/hydraulic-system-on-ships.jpg" alt="Hydraulic System Diagram" class="modal-image">
+          
+          <div class="note-box hydraulic">
+            <strong>Komponen Utama Sistem Hydraulic:</strong>
+            <ul style="margin-top: 10px; padding-left: 25px; line-height: 1.7;">
+              <li><span class="highlight">Reservoir:</span> Menyimpan fluida hydraulic</li>
+              <li><span class="highlight">Pompa Hydraulic:</span> Menghasilkan aliran fluida bertekanan (gear pump, vane pump, piston pump)</li>
+              <li><span class="highlight">Katup Kontrol:</span> Mengatur arah, tekanan, dan aliran fluida</li>
+              <li><span class="highlight">Aktuator:</span> Mengubah energi fluida menjadi gerakan mekanik (silinder untuk gerakan linear, motor hydraulic untuk gerakan rotari)</li>
+              <li><span class="highlight">Fluida Hydraulic:</span> Medium transfer energi (biasanya oli tahan api untuk aplikasi kapal)</li>
+              <li><span class="highlight">Filter & Cooler:</span> Menjaga kebersihan dan suhu fluida</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="modal-section hydraulic">
+          <h3>Aplikasi di Kapal</h3>
+          <div class="spec-list hydraulic">
+            <ul>
+              <li><span class="highlight">Steering Gear:</span> Sistem kemudi kapal (wajib memiliki redundant system)</li>
+              <li><span class="highlight">Deck Crane:</span> Untuk bongkar muat cargo</li>
+              <li><span class="highlight">Windlass & Mooring Winch:</span> Untuk jangkar dan tambat</li>
+              <li><span class="highlight">Cargo Handling:</span> Hatch covers, ramp systems</li>
+              <li><span class="highlight">Stabilizer Fins:</span> Untuk mengurangi olengan kapal</li>
+              <li><span class="highlight">Watertight Doors:</span> Pintu kedap air yang dioperasikan hydraulic</li>
+            </ul>
+          </div>
+          
+          <h3 style="margin: 20px 0 10px;">Keuntungan Sistem Hydraulic di Kapal:</h3>
+          <ul style="padding-left: 25px; line-height: 1.7;">
+            <li>Power density tinggi - tenaga besar pada ukuran kompak</li>
+            <li>Kontrol presisi yang baik untuk aplikasi berat</li>
+            <li>Kemampuan menahan beban tanpa konsumsi energi (misal: crane holding position)</li>
+            <li>Perlindungan overload built-in melalui pressure relief valve</li>
+            <li>Cocok untuk lingkungan marine yang keras</li>
+          </ul>
+        </div>
+        
+        <div class="modal-section hydraulic">
+          <h3>Pemeliharaan Sistem Hydraulic</h3>
+          <p>Pemeliharaan preventif sangat penting untuk keandalan sistem hydraulic di kapal:</p>
+          <ul style="padding-left: 25px; margin: 15px 0; line-height: 1.7;">
+            <li><span class="highlight">Pemeriksaan kebocoran:</span> Setiap sambungan, seal, dan hose</li>
+            <li><span class="highlight">Analisis fluida:</span> Kontaminasi, kelembaban, dan degradasi oli</li>
+            <li><span class="highlight">Penggantian filter:</span> Sesuai jadwal atau saat indikator menunjukkan</li>
+            <li><span class="highlight">Pemeriksaan pressure relief valve:</span> Setting tekanan dan fungsi</li>
+            <li><span class="highlight">Pemeriksaan pompa:</span> Noise, getaran, dan performa</li>
+          </ul>
+          
+          <div class="note-box hydraulic">
+            <strong>Catatan Keselamatan:</strong> Sebelum melakukan perbaikan pada sistem hydraulic, selalu lakukan isolasi energi (lockout/tagout), turunkan tekanan sistem, dan kuras fluida dari komponen yang akan dikerjakan. Tekanan residual dapat menyebabkan cedera serius.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Hydraulic Actuator Popup -->
+  <div id="hydraulic-actuator-popup" class="modal">
+    <div class="modal-content hydraulic">
+      <button class="close-modal">&times;</button>
+      <div class="modal-header hydraulic">
+        <h2 class="modal-title">Actuator Hydraulic di Kapal</h2>
+      </div>
+      <div class="modal-body">
+        <div class="modal-section hydraulic">
+          <h3>Jenis Actuator Hydraulic</h3>
+          <p>Actuator hydraulic mengubah energi fluida menjadi gerakan mekanik. Ada dua jenis utama:</p>
+          
+          <h4 style="margin: 15px 0 10px; color: var(--hydraulic-green);">1. Silinder Hydraulic (Linear Actuator)</h4>
+          <p>Menghasilkan gerakan linear (dorong/tarik). Digunakan pada:</p>
+          <ul style="padding-left: 25px; margin: 10px 0; line-height: 1.7;">
+            <li>Steering gear (ram type)</li>
+            <li>Cargo hatch covers</li>
+            <li>Stabilizer fins</li>
+            <li>Watertight doors</li>
+          </ul>
+          
+          <img src="https://www.surpluscenter.com/images/9-7920-1s.jpg" alt="Hydraulic Cylinder" class="modal-image">
+          
+          <h4 style="margin: 20px 0 10px; color: var(--hydraulic-green);">2. Motor Hydraulic (Rotary Actuator)</h4>
+          <p>Menghasilkan gerakan rotari (putar). Digunakan pada:</p>
+          <ul style="padding-left: 25px; margin: 10px 0; line-height: 1.7;">
+            <li>Deck crane slewing mechanism</li>
+            <li>Windlass dan mooring winch</li>
+            <li>Capstan</li>
+            <li>Steering gear (rotary vane type)</li>
+          </ul>
+          
+          <img src="https://www.fluidpowerjournal.com/wp-content/uploads/2019/08/hydraulic-motor-types.jpg" alt="Hydraulic Motor" class="modal-image">
+        </div>
+        
+        <div class="modal-section hydraulic">
+          <h3>Spesifikasi Teknis Penting</h3>
+          <div class="spec-list hydraulic">
+            <ul>
+              <li><span class="highlight">Working Pressure:</span> Tekanan operasi normal sistem (biasanya 150-300 bar untuk aplikasi kapal)</li>
+              <li><span class="highlight">Bore Size:</span> Diameter silinder dalam (menentukan gaya output)</li>
+              <li><span class="highlight">Stroke Length:</span> Jarak gerak maksimum silinder</li>
+              <li><span class="highlight">Rod Diameter:</span> Diameter batang silinder (menentukan kekuatan dan kapasitas dorong/tarik)</li>
+              <li><span class="highlight">Displacement:</span> Volume fluida per putaran (untuk motor hydraulic)</li>
+              <li><span class="highlight">Torque Rating:</span> Torsi output maksimum (untuk motor hydraulic)</li>
+            </ul>
+          </div>
+          
+          <h3 style="margin: 20px 0 10px;">Pemilihan Actuator yang Tepat:</h3>
+          <p>Pemilihan actuator hydraulic harus mempertimbangkan:</p>
+          <ul style="padding-left: 25px; margin: 10px 0; line-height: 1.7;">
+            <li>Beban yang harus digerakkan</li>
+            <li>Kecepatan gerakan yang dibutuhkan</li>
+            <li>Ruang instalasi yang tersedia</li>
+            <li>Lingkungan operasi (suhu, kelembaban, getaran)</li>
+            <li>Standar keselamatan marine (SOLAS, Class Society requirements)</li>
+          </ul>
+        </div>
+        
+        <div class="modal-section hydraulic">
+          <h3>Perawatan Actuator Hydraulic</h3>
+          <p>Perawatan actuator hydraulic sangat penting untuk keandalan operasional:</p>
+          <ul style="padding-left: 25px; margin: 15px 0; line-height: 1.7;">
+            <li><span class="highlight">Pemeriksaan seal:</span> Kebocoran pada rod seal dan piston seal</li>
+            <li><span class="highlight">Pemeriksaan batang (rod):</span> Goresan, korosi, atau bending</li>
+            <li><span class="highlight">Pemeriksaan mounting:</span> Keausan pada sambungan dan bantalan</li>
+            <li><span class="highlight">Penggantian seal kit:</span> Sesuai jadwal atau saat terjadi kebocoran</li>
+            <li><span class="highlight">Pemeriksaan internal:</span> Keausan silinder barrel dan komponen internal</li>
+          </ul>
+          
+          <div class="note-box hydraulic">
+            <strong>Tips untuk Taruna:</strong> Saat mengganti seal pada silinder hydraulic, selalu gunakan alat khusus (seal installer) dan hindari merusak seal dengan obeng atau alat tajam. Bersihkan semua komponen dengan baik sebelum perakitan dan gunakan pelumas yang sesuai saat memasang seal baru.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Hydraulic Steering Popup -->
+  <div id="hydraulic-steering-popup" class="modal">
+    <div class="modal-content hydraulic">
+      <button class="close-modal">&times;</button>
+      <div class="modal-header hydraulic">
+        <h2 class="modal-title">Sistem Steering Hydraulic Kapal</h2>
+      </div>
+      <div class="modal-body">
+        <div class="modal-section hydraulic">
+          <h3>Prinsip Kerja Steering Gear Hydraulic</h3>
+          <p>Sistem steering gear hydraulic menggunakan tekanan fluida untuk menggerakkan kemudi kapal. Ada dua tipe utama yang umum digunakan di kapal:</p>
+          
+          <h4 style="margin: 15px 0 10px; color: var(--hydraulic-green);">1. Ram Type Steering Gear</h4>
+          <p>Menggunakan silinder hydraulic ganda atau empat untuk mendorong tiller yang terhubung ke poros kemudi. Tipe ini umum untuk kapal besar karena kemampuan menghasilkan gaya sangat besar.</p>
+          
+          <img src="https://www.marine-part.com/image/cache/catalog/hydraulic-steering-system-for-boat-600x600.jpg" alt="Ram Type Steering Gear" class="modal-image">
+          
+          <h4 style="margin: 20px 0 10px; color: var(--hydraulic-green);">2. Rotary Vane Type Steering Gear</h4>
+          <p>Menggunakan motor hydraulic khusus dengan rotor dan vane yang berputar dalam ruang melingkar. Tipe ini lebih kompak dan cocok untuk kapal menengah.</p>
+          
+          <img src="https://www.ship-technology.com/wp-content/uploads/sites/10/2018/07/1-27.jpg" alt="Rotary Vane Steering Gear" class="modal-image">
+        </div>
+        
+        <div class="modal-section hydraulic">
+          <h3>Komponen Utama Sistem Steering Hydraulic</h3>
+          <div class="spec-list hydraulic">
+            <ul>
+              <li><span class="highlight">Hydraulic Pump Unit:</span> Biasanya dua unit (main & standby) dengan electric motor drive</li>
+              <li><span class="highlight">Hydraulic Cylinder/Ram:</span> Untuk Ram Type atau Rotary Vane Actuator untuk tipe rotary</li>
+              <li><span class="highlight">Control Valve:</span> Mengarahkan aliran fluida sesuai perintah dari kemudi</li>
+              <li><span class="highlight">Hydraulic Reservoir:</span> Menyimpan fluida dengan kapasitas cukup untuk seluruh sistem</li>
+              <li><span class="highlight">Relief Valve:</span> Melindungi sistem dari tekanan berlebih</li>
+              <li><span class="highlight">Hand Pump:</span> Untuk operasi darurat jika listrik gagal</li>
+              <li><span class="highlight">Rudder Angle Indicator:</span> Menunjukkan posisi kemudi di anjungan dan steering flat</li>
+              <li><span class="highlight">Isolation Valves:</span> Untuk memisahkan bagian sistem saat maintenance</li>
+            </ul>
+          </div>
+          
+          <div class="note-box hydraulic">
+            <strong>Persyaratan SOLAS:</strong> Sistem steering gear harus mampu menggerakkan kemudi dari 35° starboard ke 30° port dalam waktu tidak lebih dari 28 detik pada kecepatan maju maksimum. Kapal harus memiliki dua sumber daya independen untuk steering gear.
+          </div>
+        </div>
+        
+        <div class="modal-section hydraulic">
+          <h3>Operasi dan Troubleshooting</h3>
+          <p>Prosedur operasi normal dan troubleshooting umum:</p>
+          
+          <h4 style="margin: 15px 0 10px; color: var(--hydraulic-green);">Prosedur Start-up:</h4>
+          <ol style="padding-left: 25px; margin: 10px 0; line-height: 1.7;">
+            <li>Periksa level fluida di reservoir</li>
+            <li>Buka semua isolation valve yang diperlukan</li>
+            <li>Nyalakan pompa hydraulic (biasanya secara otomatis saat menghidupkan power)</li>
+            <li>Periksa tidak ada kebocoran di seluruh sistem</li>
+            <li>Uji pergerakan kemudi dari anjungan</li>
+          </ol>
+          
+          <h4 style="margin: 15px 0 10px; color: var(--hydraulic-green);">Troubleshooting Umum:</h4>
+          <table style="width: 100%; border-collapse: collapse; margin: 15px 0; border-radius: 8px; overflow: hidden; box-shadow: 0 3px 8px rgba(0,0,0,0.1);">
+            <tr style="background-color: #e8f5e9;">
+              <th style="padding: 12px; text-align: left; border: 1px solid #a5d6a7; font-weight: 700;">Gejala</th>
+              <th style="padding: 12px; text-align: left; border: 1px solid #a5d6a7; font-weight: 700;">Kemungkinan Penyebab</th>
+              <th style="padding: 12px; text-align: left; border: 1px solid #a5d6a7; font-weight: 700;">Tindakan Korektif</th>
+            </tr>
+            <tr>
+              <td style="padding: 10px; border: 1px solid #a5d6a7;">Kemudi lambat</td>
+              <td style="padding: 10px; border: 1px solid #a5d6a7;">Fluida kotor, pompa lemah, kebocoran internal</td>
+              <td style="padding: 10px; border: 1px solid #a5d6a7;">Ganti filter, periksa pompa, periksa seal</td>
+            </tr>
+            <tr style="background-color: #f1f8e9;">
+              <td style="padding: 10px; border: 1px solid #a5d6a7;">Kemudi tidak responsif</td>
+              <td style="padding: 10px; border: 1px solid #a5d6a7;">Udara dalam sistem, control valve macet</td>
+              <td style="padding: 10px; border: 1px solid #a5d6a7;">Bleed udara, bersihkan control valve</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px; border: 1px solid #a5d6a7;">Kebocoran fluida</td>
+              <td style="padding: 10px; border: 1px solid #a5d6a7;">Seal rusak, hose retak, sambungan longgar</td>
+              <td style="padding: 10px; border: 1px solid #a5d6a7;">Ganti seal/hose, kencangkan sambungan</td>
+            </tr>
+            <tr style="background-color: #f1f8e9;">
+              <td style="padding: 10px; border: 1px solid #a5d6a7;">Noise berlebihan</td>
+              <td style="padding: 10px; border: 1px solid #a5d6a7;">Kavitasi pompa, udara dalam sistem</td>
+              <td style="padding: 10px; border: 1px solid #a5d6a7;">Periksa level fluida, bleed sistem</td>
+            </tr>
+          </table>
+          
+          <div class="note-box hydraulic">
+            <strong>Catatan Keselamatan:</strong> Sebelum melakukan perbaikan pada steering gear hydraulic, pastikan kapal dalam kondisi aman (berlabuh atau di dock), aktifkan lockout/tagout procedure, dan kuras tekanan sistem. Selalu ikuti prosedur emergency steering drill sesuai SMS (Safety Management System).
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Hydraulic Sensor Popup -->
+  <div id="hydraulic-sensor-popup" class="modal">
+    <div class="modal-content hydraulic">
+      <button class="close-modal">&times;</button>
+      <div class="modal-header hydraulic">
+        <h2 class="modal-title">Sensor pada Sistem Hydraulic Kapal</h2>
+      </div>
+      <div class="modal-body">
+        <div class="modal-section hydraulic">
+          <h3>Jenis Sensor dalam Sistem Hydraulic</h3>
+          <p>Sensor memainkan peran penting dalam monitoring dan kontrol sistem hydraulic. Berikut sensor utama yang digunakan di kapal:</p>
+          
+          <div class="component-grid" style="margin: 20px 0;">
+            <div class="component-card hydraulic">
+              <div class="component-icon">PRESSION</div>
+              <h4>Pressure Sensor</h4>
+              <p>Memantau tekanan sistem</p>
+            </div>
+            <div class="component-card hydraulic">
+              <div class="component-icon">🌡️</div>
+              <h4>Temperature Sensor</h4>
+              <p>Memantau suhu fluida</p>
+            </div>
+            <div class="component-card hydraulic">
+              <div class="component-icon">💧</div>
+              <h4>Level Sensor</h4>
+              <p>Memantau level fluida</p>
+            </div>
+            <div class="component-card hydraulic">
+              <div class="component-icon">⚠️</div>
+              <h4>Filter Clogging Sensor</h4>
+              <p>Memantau kondisi filter</p>
+            </div>
+          </div>
+          
+          <img src="https://www.sensorsmag.com/files/2021/03/hydraulic-pressure-sensor.jpg" alt="Hydraulic Sensors" class="modal-image">
+        </div>
+        
+        <div class="modal-section hydraulic">
+          <h3>Spesifikasi Sensor Hydraulic</h3>
+          <div class="spec-list hydraulic">
+            <ul>
+              <li><span class="highlight">Pressure Sensor:</span> 
+                <ul style="padding-left: 25px; margin-top: 8px; line-height: 1.6;">
+                  <li>Range: 0-400 bar (tergantung aplikasi)</li>
+                  <li>Output: 4-20 mA atau 0-10 V</li>
+                  <li>Akurasi: ±0.5% hingga ±1% FS</li>
+                  <li>Material: Stainless steel untuk ketahanan korosi</li>
+                </ul>
+              </li>
+              <li><span class="highlight">Temperature Sensor:</span>
+                <ul style="padding-left: 25px; margin-top: 8px; line-height: 1.6;">
+                  <li>Range: -20°C hingga +120°C</li>
+                  <li>Tipe: RTD (Pt100) atau Thermocouple</li>
+                  <li>Proteksi: IP67 atau lebih tinggi untuk lingkungan marine</li>
+                </ul>
+              </li>
+              <li><span class="highlight">Level Sensor:</span>
+                <ul style="padding-left: 25px; margin-top: 8px; line-height: 1.6;">
+                  <li>Tipe: Float switch, ultrasonic, atau capacitive</li>
+                  <li>Output: Switch contact atau analog signal</li>
+                  <li>Alarm: High level dan low level</li>
+                </ul>
+              </li>
+              <li><span class="highlight">Filter Clogging Sensor:</span>
+                <ul style="padding-left: 25px; margin-top: 8px; line-height: 1.6;">
+                  <li>Prinsip: Differential pressure switch</li>
+                  <li>Alarm: Visual dan audible di control panel</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="modal-section hydraulic">
+          <h3>Integrasi dengan Sistem Monitoring Kapal</h3>
+          <p>Modern marine hydraulic systems terintegrasi dengan:</p>
+          <ul style="padding-left: 25px; margin: 15px 0; line-height: 1.7;">
+            <li><span class="highlight">SCADA System:</span> Untuk monitoring dan kontrol terpusat</li>
+            <li><span class="highlight">Alarm System:</span> Untuk memberikan peringatan saat parameter di luar batas</li>
+            <li><span class="highlight">Data Logging:</span> Untuk analisis tren dan predictive maintenance</li>
+            <li><span class="highlight">Remote Monitoring:</span> Untuk monitoring dari anjungan atau kantor darat</li>
+          </ul>
+          
+          <div class="note-box hydraulic">
+            <strong>Tips untuk Taruna:</strong> Saat melakukan kalibrasi sensor hydraulic, selalu ikuti prosedur yang ditentukan oleh manufacturer. Gunakan reference standard yang terkalibrasi dan catat semua hasil kalibrasi untuk dokumentasi. Untuk sensor tekanan, pastikan untuk melepas tekanan sistem sebelum melakukan kalibrasi atau penggantian.
+          </div>
+          
+          <h3 style="margin: 20px 0 10px;">Troubleshooting Sensor Umum:</h3>
+          <table style="width: 100%; border-collapse: collapse; margin: 15px 0; border-radius: 8px; overflow: hidden; box-shadow: 0 3px 8px rgba(0,0,0,0.1);">
+            <tr style="background-color: #e8f5e9;">
+              <th style="padding: 12px; text-align: left; border: 1px solid #a5d6a7; font-weight: 700;">Gejala</th>
+              <th style="padding: 12px; text-align: left; border: 1px solid #a5d6a7; font-weight: 700;">Kemungkinan Penyebab</th>
+              <th style="padding: 12px; text-align: left; border: 1px solid #a5d6a7; font-weight: 700;">Solusi</th>
+            </tr>
+            <tr>
+              <td style="padding: 10px; border: 1px solid #a5d6a7;">Pembacaan tidak stabil</td>
+              <td style="padding: 10px; border: 1px solid #a5d6a7;">Koneksi longgar, gangguan listrik</td>
+              <td style="padding: 10px; border: 1px solid #a5d6a7;">Periksa koneksi, tambahkan shielding</td>
+            </tr>
+            <tr style="background-color: #f1f8e9;">
+              <td style="padding: 10px; border: 1px solid #a5d6a7;">Pembacaan tidak akurat</td>
+              <td style="padding: 10px; border: 1px solid #a5d6a7;">Kalibrasi hilang, sensor rusak</td>
+              <td style="padding: 10px; border: 1px solid #a5d6a7;">Kalibrasi ulang atau ganti sensor</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px; border: 1px solid #a5d6a7;">Tidak ada sinyal</td>
+              <td style="padding: 10px; border: 1px solid #a5d6a7;">Kabel putus, power supply gagal</td>
+              <td style="padding: 10px; border: 1px solid #a5d6a7;">Periksa kabel dan power supply</td>
+            </tr>
+            <tr style="background-color: #f1f8e9;">
+              <td style="padding: 10px; border: 1px solid #a5d6a7;">Alarm palsu</td>
+              <td style="padding: 10px; border: 1px solid #a5d6a7;">Setting threshold salah, noise</td>
+              <td style="padding: 10px; border: 1px solid #a5d6a7;">Sesuaikan setting, periksa grounding</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Pneumatic System Popup -->
+  <div id="pneumatic-system-popup" class="modal">
+    <div class="modal-content pneumatic">
+      <button class="close-modal">&times;</button>
+      <div class="modal-header pneumatic">
+        <h2 class="modal-title">Sistem Pneumatic Kapal - Gambaran Umum</h2>
+      </div>
+      <div class="modal-body">
+        <div class="modal-section pneumatic">
+          <h3>Prinsip Dasar Sistem Pneumatic</h3>
+          <p>Sistem pneumatic menggunakan udara bertekanan sebagai media untuk mentransfer energi. Udara dikompresi oleh kompresor, disimpan dalam receiver, lalu didistribusikan melalui pipa ke berbagai peralatan yang membutuhkan.</p>
+          
+          <img src="https://www.airbestpractices.com/sites/default/files/styles/article_featured_standard/public/field/image/Compressed%20Air%20System%20-%20Schematic%20Diagram.jpg" alt="Pneumatic System Diagram" class="modal-image">
+          
+          <div class="note-box pneumatic">
+            <strong>Komponen Utama Sistem Pneumatic:</strong>
+            <ul style="margin-top: 10px; padding-left: 25px; line-height: 1.7;">
+              <li><span class="highlight">Kompresor Udara:</span> Menghasilkan udara bertekanan (reciprocating atau screw type)</li>
+              <li><span class="highlight">Air Receiver:</span> Menyimpan udara bertekanan dan menstabilkan sistem</li>
+              <li><span class="highlight">Air Dryer:</span> Menghilangkan kelembaban dari udara tekan</li>
+              <li><span class="highlight">Filter, Regulator, Lubricator (FRL):</span> Menyiapkan udara untuk peralatan</li>
+              <li><span class="highlight">Distribution Piping:</span> Mendistribusikan udara ke seluruh kapal</li>
+              <li><span class="highlight">Control Valves:</span> Mengatur aliran udara ke aktuator</li>
+              <li><span class="highlight">Aktuator Pneumatic:</span> Silinder atau motor pneumatic</li>
+              <li><span class="highlight">Safety Devices:</span> Pressure relief valve, pressure switch</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="modal-section pneumatic">
+          <h3>Aplikasi di Kapal</h3>
+          <div class="spec-list pneumatic">
+            <ul>
+              <li><span class="highlight">Control Valve Actuation:</span> Untuk valve di engine room dan cargo area</li>
+              <li><span class="highlight">Pneumatic Tools:</span> Impact wrench, grinders, chipping guns</li>
+              <li><span class="highlight">Safety Systems:</span> Emergency shutdown systems, quick closing valves</li>
+              <li><span class="highlight">Deck Machinery Control:</span> Untuk winch dan crane control systems</li>
+              <li><span class="highlight">Horn & Whistle:</span> Sistem suara kapal</li>
+              <li><span class="highlight">Painting Systems:</span> Spray painting equipment</li>
+            </ul>
+          </div>
+          
+          <h3 style="margin: 20px 0 10px;">Keuntungan Sistem Pneumatic di Kapal:</h3>
+          <ul style="padding-left: 25px; line-height: 1.7;">
+            <li>Aman untuk area berbahaya (tidak ada percikan api)</li>
+            <li>Udara sebagai media kerja mudah didapat dan tidak beracun</li>
+            <li>Sistem lebih sederhana dan murah dibanding hydraulic untuk aplikasi ringan</li>
+            <li>Kecepatan respons tinggi untuk aplikasi kontrol</li>
+            <li>Tahan terhadap overload (aktuator bisa berhenti tanpa kerusakan)</li>
+          </ul>
+        </div>
+        
+        <div class="modal-section pneumatic">
+          <h3>Pemeliharaan Sistem Pneumatic</h3>
+          <p>Pemeliharaan preventif sangat penting untuk keandalan sistem pneumatic:</p>
+          <ul style="padding-left: 25px; margin: 15px 0; line-height: 1.7;">
+            <li><span class="highlight">Drain kondensat:</span> Dari air receiver dan filter secara rutin</li>
+            <li><span class="highlight">Pemeriksaan kebocoran:</span> Pada sambungan, valve, dan aktuator</li>
+            <li><span class="highlight">Penggantian filter:</span> Sesuai jadwal atau saat pressure drop tinggi</li>
+            <li><span class="highlight">Pemeriksaan kompresor:</span> Oil level, belt tension, dan performa</li>
+            <li><span class="highlight">Pemeriksaan safety valve:</span> Fungsi dan setting pressure</li>
+            <li><span class="highlight">Pemeriksaan air dryer:</span> Fungsi dan kondisi refrigerant/desorben</li>
+          </ul>
+          
+          <div class="note-box pneumatic">
+            <strong>Catatan Keselamatan:</strong> Sebelum melakukan perbaikan pada sistem pneumatic, selalu lakukan isolasi energi (lockout/tagout) dan kuras tekanan dari sistem. Udara bertekanan yang terlepas secara tiba-tiba dapat menyebabkan cedera serius atau kerusakan peralatan.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Pneumatic Actuator Popup -->
+  <div id="pneumatic-actuator-popup" class="modal">
+    <div class="modal-content pneumatic">
+      <button class="close-modal">&times;</button>
+      <div class="modal-header pneumatic">
+        <h2 class="modal-title">Actuator Pneumatic di Kapal</h2>
+      </div>
+      <div class="modal-body">
+        <div class="modal-section pneumatic">
+          <h3>Jenis Actuator Pneumatic</h3>
+          <p>Actuator pneumatic mengubah energi udara bertekanan menjadi gerakan mekanik. Ada tiga jenis utama yang digunakan di kapal:</p>
+          
+          <h4 style="margin: 15px 0 10px; color: var(--pneumatic-purple);">1. Diaphragm Actuator</h4>
+          <p>Menggunakan diafragma fleksibel untuk menghasilkan gerakan linear. Cocok untuk aplikasi kontrol valve dengan stroke pendek dan kekuatan sedang.</p>
+          
+          <img src="https://www.valin.com/media/1430/diaphragm-actuator-diagram.jpg" alt="Diaphragm Actuator" class="modal-image">
+          
+          <h4 style="margin: 20px 0 10px; color: var(--pneumatic-purple);">2. Piston Actuator</h4>
+          <p>Menggunakan piston dalam silinder untuk menghasilkan gerakan linear dengan kekuatan dan stroke lebih besar dibanding diaphragm actuator.</p>
+          
+          <img src="https://www.spartanics.com/wp-content/uploads/2020/07/piston-actuator-diagram.jpg" alt="Piston Actuator" class="modal-image">
+          
+          <h4 style="margin: 20px 0 10px; color: var(--pneumatic-purple);">3. Rotary Actuator</h4>
+          <p>Menghasilkan gerakan rotari (putar) untuk aplikasi seperti quarter-turn valve (ball valve, butterfly valve).</p>
+          
+          <img src="https://www.valin.com/media/1431/rotary-actuator-diagram.jpg" alt="Rotary Actuator" class="modal-image">
+        </div>
+        
+        <div class="modal-section pneumatic">
+          <h3>Aplikasi di Kapal</h3>
+          <div class="spec-list pneumatic">
+            <ul>
+              <li><span class="highlight">Engine Room Valve Control:</span> Remote operation untuk valve pada sistem bahan bakar, pelumas, dan pendingin</li>
+              <li><span class="highlight">Cargo Handling Systems:</span> Kontrol valve pada sistem transfer muatan cair</li>
+              <li><span class="highlight">Safety Systems:</span> Quick closing valve untuk fire safety systems</li>
+              <li><span class="highlight">Automation Systems:</span> Pengendalian proses otomatis pada berbagai sistem kapal</li>
+              <li><span class="highlight">Instrumentation:</span> Positioner untuk kontrol presisi valve</li>
+            </ul>
+          </div>
+          
+          <h3 style="margin: 20px 0 10px;">Pemilihan Actuator yang Tepat:</h3>
+          <p>Pemilihan actuator pneumatic harus mempertimbangkan:</p>
+          <ul style="padding-left: 25px; margin: 10px 0; line-height: 1.7;">
+            <li>Tipe valve yang akan dikendalikan (globe, ball, butterfly)</li>
+            <li>Gaya yang dibutuhkan untuk menggerakkan valve</li>
+            <li>Stroke atau sudut putar yang diperlukan</li>
+            <li>Tekanan udara yang tersedia di sistem</li>
+            <li>Lingkungan operasi (suhu, kelembaban, area berbahaya)</li>
+          </ul>
+        </div>
+        
+        <div class="modal-section pneumatic">
+          <h3>Perawatan Actuator Pneumatic</h3>
+          <p>Perawatan actuator pneumatic penting untuk memastikan keandalan operasional:</p>
+          <ul style="padding-left: 25px; margin: 15px 0; line-height: 1.7;">
+            <li><span class="highlight">Pemeriksaan kebocoran:</span> Pada seal, sambungan, dan komponen aktuator</li>
+            <li><span class="highlight">Pelumasan:</span> Untuk actuator yang memerlukan lubricated air</li>
+            <li><span class="highlight">Pemeriksaan mounting:</span> Keausan pada sambungan dan bantalan</li>
+            <li><span class="highlight">Penggantian seal kit:</span> Sesuai jadwal atau saat terjadi kebocoran</li>
+            <li><span class="highlight">Pemeriksaan positioner:</span> Kalibrasi dan fungsi kontrol</li>
+          </ul>
+          
+          <div class="note-box pneumatic">
+            <strong>Tips untuk Taruna:</strong> Saat melakukan perawatan actuator pneumatic, pastikan untuk melepas tekanan udara dari sistem terlebih dahulu. Gunakan alat yang tepat saat membongkar dan memasang kembali komponen untuk menghindari kerusakan pada seal dan komponen presisi.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="logo-container">
+          <div class="logo-item">
+            <div style="font-size: 3.5rem; margin-bottom: 8px;">⚓</div>
+            <h3>RAVINDO LEARNING SYSTEM</h3>
+            <p>Sistem Pembelajaran Terintegrasi untuk Pelaut Indonesia</p>
+          </div>
+          <div class="logo-item">
+            <div style="font-size: 3.5rem; margin-bottom: 8px;">🎓</div>
+            <h3>Kurikulum Terstruktur</h3>
+            <p>Dari dasar hingga mahir, sesuai standar internasional</p>
+          </div>
+          <div class="logo-item">
+            <div style="font-size: 3.5rem; margin-bottom: 8px;">📱</div>
+            <h3>Akses Fleksibel</h3>
+            <p>Bisa diakses via website, WA Channel, dan mobile app</p>
+          </div>
+        </div>
+        
+        <div class="creator-info">
+          <h3>RAVINDO LEARNING SYSTEM</h3>
+          <p>Dibuat oleh <span class="highlight">Rafael Sukirno</span>, praktisi 28 tahun di maritime industri dan pernah sebagai technical manager, konsultan marine dan dosen.</p>
+          <p>Alamat: Surabaya, Telp: 082143264020</p>
+          <p>Dibuat tahun 2026. Didukung oleh The Maritime Survival Teams Surabaya.</p>
+        </div>
+        
+        <p style="margin-top: 25px; font-size: 1.1rem; font-weight: 500;">&copy; 2026 RAVINDO LEARNING SYSTEM - Marine Electrical & Hydraulic Training. All Rights Reserved.</p>
+        <p style="margin-top: 8px; font-size: 1rem; opacity: 0.9;">Platform pembelajaran khusus komunitas pelaut dan taruna maritim Indonesia</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Modal functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get all popup buttons
+      const popupButtons = document.querySelectorAll('.popup-btn');
+      const closeButtons = document.querySelectorAll('.close-modal');
+      const modals = document.querySelectorAll('.modal');
+      
+      // Open modal when button is clicked
+      popupButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const targetId = this.getAttribute('data-target');
+          const modal = document.getElementById(targetId);
+          
+          if (modal) {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+            
+            // Close modal when clicking outside the content
+            modal.addEventListener('click', function(e) {
+              if (e.target === modal) {
+                closeModal(modal);
+              }
+            });
+          }
+        });
+      });
+      
+      // Close modal when close button is clicked
+      closeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const modal = this.closest('.modal');
+          if (modal) {
+            closeModal(modal);
+          }
+        });
+      });
+      
+      // Close modal when Escape key is pressed
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          modals.forEach(modal => {
+            if (modal.classList.contains('active')) {
+              closeModal(modal);
+            }
+          });
+        }
+      });
+      
+      // Function to close modal
+      function closeModal(modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto'; // Restore scrolling
+      }
+      
+      // Add smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          if (targetId !== '#') {
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+              window.scrollTo({
+                top: targetElement.offsetTop - 80,
+                behavior: 'smooth'
+              });
+            }
+          }
+        });
+      });
+      
+      // Add animation to section titles when in viewport
+      const sectionTitles = document.querySelectorAll('.section-title');
+      const options = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animation = 'fadeIn 1s ease-out';
+          }
+        });
+      }, options);
+      
+      sectionTitles.forEach(title => {
+        observer.observe(title);
+      });
+    });
+  </script>
+</body>
+</html>
+
